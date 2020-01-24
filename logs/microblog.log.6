@@ -1,0 +1,80 @@
+2020-01-17 13:08:00,701 ERROR: Exception on /reset_password_request [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/nikhilnanda/Documents/GitHub/microblog/app/routes.py", line 32, in reset_password_request
+    title='Reset Password', form=form)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/templating.py", line 140, in render_template
+    ctx.app,
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/nikhilnanda/Documents/GitHub/microblog/app/templates/reset_password_request.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/Users/nikhilnanda/Documents/GitHub/microblog/app/templates/base.html", line 30, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/nikhilnanda/Documents/GitHub/microblog/app/templates/reset_password_request.html", line 8, in block "content"
+    {{ form.email.label }}<br>
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 430, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'app.forms.ResetPasswordForm object' has no attribute 'email'
+2020-01-17 13:08:39,852 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-17 13:11:09,104 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-17 13:13:10,196 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-17 13:15:02,418 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-17 13:15:52,532 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-17 13:21:28,293 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-20 11:24:40,226 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-20 11:45:14,489 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-20 11:56:57,894 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-20 11:58:28,460 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-20 12:10:20,620 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-20 12:11:03,103 ERROR: Exception on /login [POST] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/nikhilnanda/Documents/GitHub/microblog/app/routes.py", line 94, in login
+    login_user(user, remember=form.remember_me.data, duration=timedelta(seconds=30))
+NameError: name 'timedelta' is not defined
+2020-01-20 12:11:41,476 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-20 12:41:19,641 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-20 13:02:54,979 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-20 13:04:27,295 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-20 13:05:05,854 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-20 13:09:19,235 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-20 13:12:14,538 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-20 13:23:34,417 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-20 13:23:59,579 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-20 13:59:47,480 INFO: Microblog startup [in /Users/nikhilnanda/Documents/GitHub/microblog/app/__init__.py:49]
+2020-01-24 10:39:01,788 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-24 10:40:00,556 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-24 10:40:29,851 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-24 10:40:59,095 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-24 10:53:02,241 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
