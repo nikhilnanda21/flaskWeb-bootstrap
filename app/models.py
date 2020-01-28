@@ -27,6 +27,7 @@ class User(UserMixin, db.Model):
     # leagueId = db.Column(db.String(140))
     # teamId = db.Column(db.String(140))
     #
+    #
     #jwt.decode(encoded, 'secret', algorithms=['HS256']) returns {'some': 'payload'}
 
     followed = db.relationship(
