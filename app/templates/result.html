@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" media="screen">
+<table class="table table-striped table-bordered table-condensed table-hover">
+  <caption>English Premier League Results</caption>
+  <thead>
+    <tr>
+      {% for i in content[0] %}
+      {% if i!="matchId" and i!="leagueType" and i!="leagueId" and i!="leagueShortName" and i!="subLeagueId" and i!="subLeagueName" and i!="matchTime" and i!="halfStartTime" and i!="status" and i!="homeId" and i!="awayId" and i!="group" and i!="explain" and i!="neutral" and i!="extraExplain" and i!="hasLineup" and i!="season" and i!="round" and i!="leagueName" %}
+      <th>{{ i }}</th>
+      {% endif %}
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in range(numRow) %}
+    <tr>
+      {% for j in content[i] %}
+      {% if j!="matchId" and j!="leagueType" and j!="leagueId" and j!="leagueShortName" and j!="subLeagueId" and j!="subLeagueName" and j!="matchTime" and j!="halfStartTime" and j!="status" and j!="homeId" and j!="awayId" and j!="group" and j!="explain" and j!="neutral" and j!="extraExplain" and j!="hasLineup" and j!="season" and j!="round" and j!="leagueName" %}
+      <td>{{ content[i][j] }}</td>
+      {% endif %}
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

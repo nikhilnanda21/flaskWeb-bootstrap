@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" media="screen">
+<table class="table table-striped table-bordered table-condensed table-hover">
+  <caption>Top Scorers</caption>
+  <thead>
+    <tr>
+      {% for i in content[0] %}
+      {% if i!="playerId" and i!="teamId" %}
+      <th>{{ i }}</th>
+      {% endif %}
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in range(numRow) %}
+    <tr>
+      {% for j in content[i] %}
+      <!-- {% if j!="playerId" and j!="teamId" %} -->
+      <td>{{ content[i][j] }}</td>
+      <!-- {% endif %} -->
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

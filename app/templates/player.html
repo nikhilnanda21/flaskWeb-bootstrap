@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" media="screen">
+<table class="table table-striped table-bordered table-condensed table-hover">
+  <caption>Player Stats</caption>
+  <thead>
+    <tr>
+      {% for i in content[0] %}
+      {% if i!="recordId" and i!="introduce" and i!="teamId" and i!="playerId" %}
+      <th>{{ i }}</th>
+      {% endif %}
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in range(numRow) %}
+    <tr>
+      {% for j in content[i] %}
+      {% if j!="recordId" and j!="introduce" and j!="photo" and j!="teamId" and j!="playerId" %}
+      <td>{{ content[i][j] }}</td>
+      {% endif %}
+      {% if j=="photo" %}
+      <td><img src="{{ content[i][j] }}" alt=""></td>
+      {% endif %}
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

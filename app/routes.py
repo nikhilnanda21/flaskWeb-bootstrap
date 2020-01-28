@@ -107,7 +107,7 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('login'))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -185,3 +185,63 @@ def unfollow(username):
     db.session.commit()
     flash('You are not following {}.'.format(username))
     return redirect(url_for('user', username=username))
+
+@app.route('/highlights')
+def high():
+    return render_template('highlights.html')
+
+import urllib.request
+from flask import jsonify
+import json
+
+# @app.route('/explore')
+@app.route('/live')
+def live():
+    # Set url parameter
+    # url = "http://api.isportsapi.com/sport/football/league/basic?api_key=hCfaYXgl0NG0WHBZ"
+    # url = "http://api.isportsapi.com/sport/football/schedule?api_key=hCfaYXgl0NG0WHBZ&date=2020-01-26"
+    # url = "http://api.isportsapi.com/sport/football/transfer?api_key=hCfaYXgl0NG0WHBZ&day=365"
+    url = "http://api.isportsapi.com/sport/football/topscorer?api_key=hCfaYXgl0NG0WHBZ&leagueId=1639"
+    # Call iSport Api to get data in json format
+    f = urllib.request.urlopen(url)
+    content = f.read()
+    content = json.loads(content)
+    numRow = len(content["data"])
+    #numCol = len(content["data"][0])
+    #print(type(content))
+    #return jsonify(content.decode('utf-8'))
+
+    return render_template('data.html', content=content["data"], numRow=numRow)
+    #print(content.decode('utf-8'))
+
+@app.route('/player')
+def player():
+    # url = "http://api.isportsapi.com/sport/football/playerstats/league?api_key=hCfaYXgl0NG0WHBZ&leagueId=1639"
+    # url = "http://api.isportsapi.com/sport/football/playerstats/league/list?api_key=hCfaYXgl0NG0WHBZ&leagueId=1639"
+    # url = "http://api.isportsapi.com/sport/football/standing/league?api_key=hCfaYXgl0NG0WHBZ&leagueId=ID&subLeagueId=SUB_ID"
+    dummy = 26
+    url = "http://api.isportsapi.com/sport/football/player?api_key=hCfaYXgl0NG0WHBZ&teamId=" + str(dummy)
+    f = urllib.request.urlopen(url)
+    content = f.read()
+    content = json.loads(content)
+    numRow = len(content["data"])
+    return render_template('player.html', content=content["data"], numRow=numRow)
+
+@app.route('/result')
+def result():
+    url = "http://api.isportsapi.com/sport/football/schedule?api_key=hCfaYXgl0NG0WHBZ&leagueId=1639"
+    f = urllib.request.urlopen(url)
+    content = f.read()
+    content = json.loads(content)
+    numRow = len(content["data"])
+    return render_template('result.html', content=content["data"], numRow=numRow)
+
+@app.route('/team')
+def team():
+    url = "http://api.isportsapi.com/sport/football/team?api_key=hCfaYXgl0NG0WHBZ"
+    f = urllib.request.urlopen(url)
+    content = f.read()
+    content = json.loads(content)
+    # numRow = len(content["data"])
+    numRow = 100
+    return render_template('team.html', content=content["data"], numRow=numRow)
