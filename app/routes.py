@@ -187,6 +187,7 @@ def unfollow(username):
     return redirect(url_for('user', username=username))
 
 @app.route('/highlights')
+@login_required
 def high():
     return render_template('highlights.html')
 
@@ -196,6 +197,7 @@ import json
 
 # @app.route('/explore')
 @app.route('/live')
+@login_required
 def live():
     # Set url parameter
     # url = "http://api.isportsapi.com/sport/football/league/basic?api_key=hCfaYXgl0NG0WHBZ"
@@ -215,6 +217,7 @@ def live():
     #print(content.decode('utf-8'))
 
 @app.route('/player')
+@login_required
 def player():
     # url = "http://api.isportsapi.com/sport/football/playerstats/league?api_key=hCfaYXgl0NG0WHBZ&leagueId=1639"
     # url = "http://api.isportsapi.com/sport/football/playerstats/league/list?api_key=hCfaYXgl0NG0WHBZ&leagueId=1639"
@@ -228,6 +231,7 @@ def player():
     return render_template('player.html', content=content["data"], numRow=numRow)
 
 @app.route('/result')
+@login_required
 def result():
     url = "http://api.isportsapi.com/sport/football/schedule?api_key=hCfaYXgl0NG0WHBZ&leagueId=1639"
     f = urllib.request.urlopen(url)
@@ -237,6 +241,7 @@ def result():
     return render_template('result.html', content=content["data"], numRow=numRow)
 
 @app.route('/team')
+@login_required
 def team():
     url = "http://api.isportsapi.com/sport/football/team?api_key=hCfaYXgl0NG0WHBZ"
     f = urllib.request.urlopen(url)

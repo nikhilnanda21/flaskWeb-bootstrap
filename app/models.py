@@ -23,6 +23,10 @@ class User(UserMixin, db.Model):
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     dummy_token = jwt.encode({'some': 'payload'}, 'secret', algorithm='HS256')
+    #
+    # leagueId = db.Column(db.String(140))
+    # teamId = db.Column(db.String(140))
+    #
     #jwt.decode(encoded, 'secret', algorithms=['HS256']) returns {'some': 'payload'}
 
     followed = db.relationship(
