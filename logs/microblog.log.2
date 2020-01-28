@@ -1,10 +1,58 @@
-2020-01-28 12:38:50,486 ERROR: Exception on / [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
+2020-01-28 13:28:42,018 ERROR: Exception on /edit_profile [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/routes.py", line 161, in edit_profile
+    return render_template('edit_profile.html', title='Edit Profile', form=form)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/templating.py", line 140, in render_template
+    ctx.app,
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/templates/edit_profile.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
+    {% block content -%}
+  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/templates/base.html", line 52, in block "content"
+    {% block app_content %}{% endblock %}
+  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/templates/edit_profile.html", line 23, in block "app_content"
+    {{ form.leagueId(size=32) }}<br>
+TypeError: 'NoneType' object is not callable
+2020-01-28 13:30:04,261 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:30:24,799 ERROR: Exception on /edit_profile [POST] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1246, in _execute_context
     cursor, statement, parameters, context
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 581, in do_execute
     cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such column: user.leagueId
+sqlite3.InterfaceError: Error binding parameter 0 - probably unsupported type.
 
 The above exception was the direct cause of the following exception:
 
@@ -17,40 +65,40 @@ Traceback (most recent call last):
     reraise(exc_type, exc_value, tb)
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
     raise value
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1947, in full_dispatch_request
-    rv = self.preprocess_request()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2241, in preprocess_request
-    rv = func()
-  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/routes.py", line 140, in before_request
-    if current_user.is_authenticated:
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/werkzeug/local.py", line 348, in __getattr__
-    return getattr(self._get_current_object(), name)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/werkzeug/local.py", line 307, in _get_current_object
-    return self.__local()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_login/utils.py", line 26, in <lambda>
-    current_user = LocalProxy(lambda: _get_user())
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_login/utils.py", line 335, in _get_user
-    current_app.login_manager._load_user()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 359, in _load_user
-    return self.reload_user()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 321, in reload_user
-    user = self.user_callback(user_id)
-  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/models.py", line 89, in load_user
-    return User.query.get(int(id))
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 982, in get
-    return self._get_impl(ident, loading.load_on_pk_identity)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 1094, in _get_impl
-    return db_load_fn(self, primary_key_identity)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 284, in load_on_pk_identity
-    return q.one()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3325, in one
-    ret = self.one_or_none()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3294, in one_or_none
-    ret = list(self)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3367, in __iter__
-    return self._execute_and_instances(context)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3392, in _execute_and_instances
-    result = conn.execute(querycontext.statement, self._params)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/routes.py", line 153, in edit_profile
+    db.session.commit()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1036, in commit
+    self.transaction.commit()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 503, in commit
+    self._prepare_impl()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 482, in _prepare_impl
+    self.session.flush()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2479, in flush
+    self._flush(objects)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2617, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 153, in reraise
+    raise value
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2577, in _flush
+    flush_context.execute()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/unitofwork.py", line 589, in execute
+    uow,
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/persistence.py", line 236, in save_obj
+    update,
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/persistence.py", line 996, in _emit_update_statements
+    statement, multiparams
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 982, in execute
     return meth(self, multiparams, params)
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 287, in _execute_on_connection
@@ -69,13 +117,8 @@ Traceback (most recent call last):
     cursor, statement, parameters, context
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 581, in do_execute
     cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: user.leagueId
-[SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash, user.about_me AS user_about_me, user.last_seen AS user_last_seen, user."leagueId" AS "user_leagueId", user."teamId" AS "user_teamId" 
-FROM user 
-WHERE user.id = ?]
-[parameters: (8,)]
-(Background on this error at: http://sqlalche.me/e/e3q8)
-2020-01-28 12:39:37,269 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 12:42:37,822 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 12:43:08,030 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 12:43:23,943 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+sqlalchemy.exc.InterfaceError: (sqlite3.InterfaceError) Error binding parameter 0 - probably unsupported type.
+[SQL: UPDATE user SET "leagueId"=?, "teamId"=? WHERE user.id = ?]
+[parameters: (<wtforms.fields.core.StringField object at 0x110adfa90>, <wtforms.fields.core.StringField object at 0x110adfe80>, 1)]
+(Background on this error at: http://sqlalche.me/e/rvf5)
+2020-01-28 13:33:06,808 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]

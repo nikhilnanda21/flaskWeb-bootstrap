@@ -1,13 +1,10 @@
-2020-01-28 12:22:18,270 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 12:28:41,937 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 12:38:01,471 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 12:38:06,201 ERROR: Exception on / [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
+2020-01-28 13:05:31,277 ERROR: Exception on / [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1246, in _execute_context
     cursor, statement, parameters, context
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 581, in do_execute
     cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such column: user.leagueId
+sqlite3.OperationalError: no such table: user
 
 The above exception was the direct cause of the following exception:
 
@@ -38,7 +35,7 @@ Traceback (most recent call last):
     return self.reload_user()
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 321, in reload_user
     user = self.user_callback(user_id)
-  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/models.py", line 89, in load_user
+  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/models.py", line 90, in load_user
     return User.query.get(int(id))
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 982, in get
     return self._get_impl(ident, loading.load_on_pk_identity)
@@ -72,10 +69,24 @@ Traceback (most recent call last):
     cursor, statement, parameters, context
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 581, in do_execute
     cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: user.leagueId
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user
 [SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash, user.about_me AS user_about_me, user.last_seen AS user_last_seen, user."leagueId" AS "user_leagueId", user."teamId" AS "user_teamId" 
 FROM user 
 WHERE user.id = ?]
 [parameters: (8,)]
 (Background on this error at: http://sqlalche.me/e/e3q8)
-2020-01-28 12:38:44,779 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:05:44,235 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:06:06,192 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:06:22,854 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:06:44,130 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:06:53,675 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:07:00,401 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:10:23,091 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:12:37,503 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:13:48,397 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:15:44,120 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:19:03,767 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:20:08,211 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:22:34,542 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:28:14,159 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:28:21,705 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]

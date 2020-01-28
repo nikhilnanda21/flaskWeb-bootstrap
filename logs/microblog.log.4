@@ -1,10 +1,13 @@
-2020-01-27 15:11:58,115 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-27 15:18:28,203 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-27 15:21:39,775 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-27 15:24:31,098 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-27 15:35:37,115 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-27 15:36:51,173 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-27 15:36:56,990 ERROR: Exception on /player [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
+2020-01-28 12:47:35,784 ERROR: Exception on / [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1246, in _execute_context
+    cursor, statement, parameters, context
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 581, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: user.leagueId
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,102 +17,67 @@ Traceback (most recent call last):
     reraise(exc_type, exc_value, tb)
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
     raise value
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1949, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/routes.py", line 222, in player
-    f = urllib.request.urlopen(url)
-  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/urllib/request.py", line 223, in urlopen
-    return opener.open(url, data, timeout)
-  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/urllib/request.py", line 532, in open
-    response = meth(req, response)
-  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/urllib/request.py", line 642, in http_response
-    'http', request, response, code, msg, hdrs)
-  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/urllib/request.py", line 570, in error
-    return self._call_chain(*args)
-  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/urllib/request.py", line 504, in _call_chain
-    result = func(*args)
-  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/urllib/request.py", line 650, in http_error_default
-    raise HTTPError(req.full_url, code, msg, hdrs, fp)
-urllib.error.HTTPError: HTTP Error 400: 
-2020-01-27 15:38:08,784 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-27 15:41:24,404 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-27 15:41:31,846 ERROR: Exception on /result [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1951, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1820, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1949, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/routes.py", line 234, in result
-    numRow = len(content["data"])
-KeyError: 'data'
-2020-01-27 15:41:49,518 ERROR: Exception on /result [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1951, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1820, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1949, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/routes.py", line 234, in result
-    numRow = len(content["data"])
-KeyError: 'data'
-2020-01-28 09:44:51,730 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 10:20:25,777 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 10:20:39,392 ERROR: Exception on /result [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1951, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1820, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1949, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/routes.py", line 234, in result
-    numRow = len(content["data"])
-KeyError: 'data'
-2020-01-28 10:22:20,416 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 10:26:23,672 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 10:27:49,292 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 10:29:38,570 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 10:35:02,438 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 10:37:16,740 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 10:38:21,226 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 10:41:49,197 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 10:44:07,506 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 10:44:58,341 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 10:47:03,608 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 11:01:26,889 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 11:03:10,370 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 11:22:41,990 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 11:26:03,716 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 11:29:25,203 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 11:34:01,187 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 11:34:31,126 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 11:48:44,615 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 11:54:59,942 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 11:59:08,303 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 12:01:33,238 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 12:04:41,208 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 12:09:25,439 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-28 12:10:24,071 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1947, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2241, in preprocess_request
+    rv = func()
+  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/routes.py", line 140, in before_request
+    if current_user.is_authenticated:
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/werkzeug/local.py", line 348, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/werkzeug/local.py", line 307, in _get_current_object
+    return self.__local()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_login/utils.py", line 26, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_login/utils.py", line 335, in _get_user
+    current_app.login_manager._load_user()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 359, in _load_user
+    return self.reload_user()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 321, in reload_user
+    user = self.user_callback(user_id)
+  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/models.py", line 89, in load_user
+    return User.query.get(int(id))
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 982, in get
+    return self._get_impl(ident, loading.load_on_pk_identity)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 1094, in _get_impl
+    return db_load_fn(self, primary_key_identity)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 284, in load_on_pk_identity
+    return q.one()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3325, in one
+    ret = self.one_or_none()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3294, in one_or_none
+    ret = list(self)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3367, in __iter__
+    return self._execute_and_instances(context)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3392, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 982, in execute
+    return meth(self, multiparams, params)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1101, in _execute_clauseelement
+    distilled_params,
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1250, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1476, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 152, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1246, in _execute_context
+    cursor, statement, parameters, context
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 581, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: user.leagueId
+[SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash, user.about_me AS user_about_me, user.last_seen AS user_last_seen, user."leagueId" AS "user_leagueId", user."teamId" AS "user_teamId" 
+FROM user 
+WHERE user.id = ?]
+[parameters: (8,)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2020-01-28 12:48:54,218 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 12:51:26,954 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 12:51:31,710 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:01:40,317 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:02:15,868 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 13:05:23,308 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]

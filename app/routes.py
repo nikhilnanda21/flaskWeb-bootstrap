@@ -148,12 +148,18 @@ def edit_profile():
     if form.validate_on_submit():
         current_user.username = form.username.data
         current_user.about_me = form.about_me.data
+        current_user.leagueId = form.leagueId.data
+        current_user.teamId = form.teamId.data
         db.session.commit()
         flash('Your changes have been saved.')
         return redirect(url_for('edit_profile'))
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me
+        if current_user.leagueId:
+            form.leagueId.data = current_user.leagueId
+        if current_user.teamId:
+            form.teamId.data = current_user.teamId
     return render_template('edit_profile.html', title='Edit Profile', form=form)
 
 @app.route('/follow/<username>')
@@ -203,7 +209,11 @@ def live():
     # url = "http://api.isportsapi.com/sport/football/league/basic?api_key=hCfaYXgl0NG0WHBZ"
     # url = "http://api.isportsapi.com/sport/football/schedule?api_key=hCfaYXgl0NG0WHBZ&date=2020-01-26"
     # url = "http://api.isportsapi.com/sport/football/transfer?api_key=hCfaYXgl0NG0WHBZ&day=365"
-    url = "http://api.isportsapi.com/sport/football/topscorer?api_key=hCfaYXgl0NG0WHBZ&leagueId=1639"
+    if not current_user.leagueId:
+        dummy = "1639"
+    else:
+        dummy = current_user.leagueId
+    url = "http://api.isportsapi.com/sport/football/topscorer?api_key=hCfaYXgl0NG0WHBZ&leagueId=" + dummy
     # Call iSport Api to get data in json format
     f = urllib.request.urlopen(url)
     content = f.read()
@@ -222,8 +232,11 @@ def player():
     # url = "http://api.isportsapi.com/sport/football/playerstats/league?api_key=hCfaYXgl0NG0WHBZ&leagueId=1639"
     # url = "http://api.isportsapi.com/sport/football/playerstats/league/list?api_key=hCfaYXgl0NG0WHBZ&leagueId=1639"
     # url = "http://api.isportsapi.com/sport/football/standing/league?api_key=hCfaYXgl0NG0WHBZ&leagueId=ID&subLeagueId=SUB_ID"
-    dummy = 26
-    url = "http://api.isportsapi.com/sport/football/player?api_key=hCfaYXgl0NG0WHBZ&teamId=" + str(dummy)
+    if not current_user.teamId:
+        dummy = "26"
+    else:
+        dummy = current_user.teamId
+    url = "http://api.isportsapi.com/sport/football/player?api_key=hCfaYXgl0NG0WHBZ&teamId=" + dummy
     f = urllib.request.urlopen(url)
     content = f.read()
     content = json.loads(content)
@@ -233,7 +246,11 @@ def player():
 @app.route('/result')
 @login_required
 def result():
-    url = "http://api.isportsapi.com/sport/football/schedule?api_key=hCfaYXgl0NG0WHBZ&leagueId=1639"
+    if not current_user.leagueId:
+        dummy = "1639"
+    else:
+        dummy = current_user.leagueId
+    url = "http://api.isportsapi.com/sport/football/schedule?api_key=hCfaYXgl0NG0WHBZ&leagueId=" + dummy
     f = urllib.request.urlopen(url)
     content = f.read()
     content = json.loads(content)
@@ -248,5 +265,5 @@ def team():
     content = f.read()
     content = json.loads(content)
     # numRow = len(content["data"])
-    numRow = 100
+    numRow = 250
     return render_template('team.html', content=content["data"], numRow=numRow)

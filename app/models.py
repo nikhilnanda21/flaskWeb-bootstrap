@@ -24,8 +24,8 @@ class User(UserMixin, db.Model):
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     dummy_token = jwt.encode({'some': 'payload'}, 'secret', algorithm='HS256')
     #
-    # leagueId = db.Column(db.String(140))
-    # teamId = db.Column(db.String(140))
+    leagueId = db.Column(db.String(140))
+    teamId = db.Column(db.String(140))
     #
     #
     #jwt.decode(encoded, 'secret', algorithms=['HS256']) returns {'some': 'payload'}
@@ -38,7 +38,7 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         #return '<User {}>'.format(self.username)
-        return '<User {}, {}>'.format(self.username, self.password_hash)
+        return '<User {}, {}, {}, {}>'.format(self.username, self.password_hash, self.leagueId, self.teamId)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)

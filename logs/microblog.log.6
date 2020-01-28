@@ -1,4 +1,13 @@
-2020-01-24 14:47:37,351 ERROR: Exception on /register [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
+2020-01-28 12:38:50,486 ERROR: Exception on / [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1246, in _execute_context
+    cursor, statement, parameters, context
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 581, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: user.leagueId
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
@@ -8,87 +17,65 @@ Traceback (most recent call last):
     reraise(exc_type, exc_value, tb)
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
     raise value
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1949, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/routes.py", line 124, in register
-    return render_template('register.html', title='Register', form=form)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/templating.py", line 138, in render_template
-    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 869, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 830, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 804, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/loaders.py", line 125, in load
-    code = environment.compile(source, name, filename)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 591, in compile
-    self.handle_exception(exc_info, source_hint=source_hint)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1947, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2241, in preprocess_request
+    rv = func()
+  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/routes.py", line 140, in before_request
+    if current_user.is_authenticated:
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/werkzeug/local.py", line 348, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/werkzeug/local.py", line 307, in _get_current_object
+    return self.__local()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_login/utils.py", line 26, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_login/utils.py", line 335, in _get_user
+    current_app.login_manager._load_user()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 359, in _load_user
+    return self.reload_user()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 321, in reload_user
+    user = self.user_callback(user_id)
+  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/models.py", line 89, in load_user
+    return User.query.get(int(id))
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 982, in get
+    return self._get_impl(ident, loading.load_on_pk_identity)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 1094, in _get_impl
+    return db_load_fn(self, primary_key_identity)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 284, in load_on_pk_identity
+    return q.one()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3325, in one
+    ret = self.one_or_none()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3294, in one_or_none
+    ret = list(self)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3367, in __iter__
+    return self._execute_and_instances(context)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3392, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 982, in execute
+    return meth(self, multiparams, params)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1101, in _execute_clauseelement
+    distilled_params,
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1250, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1476, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 152, in reraise
     raise value.with_traceback(tb)
-  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/templates/register.html", line 42, in template
-    {% block app_content %}
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 543, in _generate
-    optimized=self.optimized)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/compiler.py", line 82, in generate
-    generator.visit(node)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/visitor.py", line 38, in visit
-    return f(node, *args, **kwargs)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/compiler.py", line 718, in visit_Template
-    self.fail('block %r defined twice' % block.name, block.lineno)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/compiler.py", line 315, in fail
-    raise TemplateAssertionError(msg, lineno, self.name, self.filename)
-jinja2.exceptions.TemplateAssertionError: block 'app_content' defined twice
-2020-01-24 14:48:14,235 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-24 14:51:21,003 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-24 14:52:05,083 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-24 14:54:13,470 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-24 15:07:04,064 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-24 15:11:03,194 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-27 10:07:22,137 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-27 10:22:11,046 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-27 11:01:24,597 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-27 11:02:10,220 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-27 11:08:45,916 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-27 11:28:17,587 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-27 11:28:31,665 ERROR: Exception on /explore [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    return self.finalize_request(rv)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1967, in finalize_request
-    response = self.make_response(rv)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2097, in make_response
-    "The view function did not return a valid response. The"
-TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
-2020-01-27 11:30:34,282 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-27 11:30:40,534 ERROR: Exception on /explore [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    return self.finalize_request(rv)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1967, in finalize_request
-    response = self.make_response(rv)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2097, in make_response
-    "The view function did not return a valid response. The"
-TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
-2020-01-27 12:48:22,459 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-27 12:48:40,553 ERROR: Exception on /explore [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    return self.finalize_request(rv)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1967, in finalize_request
-    response = self.make_response(rv)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2097, in make_response
-    "The view function did not return a valid response. The"
-TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
-2020-01-27 12:49:49,173 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-27 13:02:12,648 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1246, in _execute_context
+    cursor, statement, parameters, context
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 581, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: user.leagueId
+[SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash, user.about_me AS user_about_me, user.last_seen AS user_last_seen, user."leagueId" AS "user_leagueId", user."teamId" AS "user_teamId" 
+FROM user 
+WHERE user.id = ?]
+[parameters: (8,)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2020-01-28 12:39:37,269 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 12:42:37,822 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 12:43:08,030 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-28 12:43:23,943 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]

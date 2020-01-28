@@ -1,4 +1,4 @@
-2020-01-24 11:22:29,584 ERROR: Exception on /login [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
+2020-01-24 14:47:37,351 ERROR: Exception on /register [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,8 +12,8 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/routes.py", line 105, in login
-    return render_template('login.html', title='Sign In', form=form)
+  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/routes.py", line 124, in register
+    return render_template('register.html', title='Register', form=form)
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/templating.py", line 138, in render_template
     ctx.app.jinja_env.get_or_select_template(template_name_or_list),
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 869, in get_or_select_template
@@ -30,8 +30,8 @@ Traceback (most recent call last):
     reraise(exc_type, exc_value, tb)
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
     raise value.with_traceback(tb)
-  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/templates/login.html", line 36, in template
-    {% block content %}
+  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/templates/register.html", line 42, in template
+    {% block app_content %}
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 543, in _generate
     optimized=self.optimized)
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/compiler.py", line 82, in generate
@@ -42,81 +42,53 @@ Traceback (most recent call last):
     self.fail('block %r defined twice' % block.name, block.lineno)
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/compiler.py", line 315, in fail
     raise TemplateAssertionError(msg, lineno, self.name, self.filename)
-jinja2.exceptions.TemplateAssertionError: block 'content' defined twice
-2020-01-24 11:22:48,309 ERROR: Exception on /login [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
+jinja2.exceptions.TemplateAssertionError: block 'app_content' defined twice
+2020-01-24 14:48:14,235 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-24 14:51:21,003 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-24 14:52:05,083 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-24 14:54:13,470 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-24 15:07:04,064 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-24 15:11:03,194 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-27 10:07:22,137 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-27 10:22:11,046 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-27 11:01:24,597 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-27 11:02:10,220 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-27 11:08:45,916 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-27 11:28:17,587 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-27 11:28:31,665 ERROR: Exception on /explore [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1951, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1820, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1949, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/routes.py", line 105, in login
-    return render_template('login.html', title='Sign In', form=form)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/templating.py", line 138, in render_template
-    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 869, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 830, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 804, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/loaders.py", line 125, in load
-    code = environment.compile(source, name, filename)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 591, in compile
-    self.handle_exception(exc_info, source_hint=source_hint)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/templates/login.html", line 36, in template
-    {% block content %}
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 543, in _generate
-    optimized=self.optimized)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/compiler.py", line 82, in generate
-    generator.visit(node)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/visitor.py", line 38, in visit
-    return f(node, *args, **kwargs)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/compiler.py", line 718, in visit_Template
-    self.fail('block %r defined twice' % block.name, block.lineno)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/compiler.py", line 315, in fail
-    raise TemplateAssertionError(msg, lineno, self.name, self.filename)
-jinja2.exceptions.TemplateAssertionError: block 'content' defined twice
-2020-01-24 11:23:22,203 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
-2020-01-24 11:23:29,126 ERROR: Exception on /login [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1967, in finalize_request
+    response = self.make_response(rv)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2097, in make_response
+    "The view function did not return a valid response. The"
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
+2020-01-27 11:30:34,282 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-27 11:30:40,534 ERROR: Exception on /explore [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1951, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1820, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1949, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/routes.py", line 105, in login
-    return render_template('login.html', title='Sign In', form=form)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/templating.py", line 140, in render_template
-    ctx.app,
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/templating.py", line 120, in _render
-    rv = template.render(context)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 1008, in render
-    return self.environment.handle_exception(exc_info, True)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/nikhilnanda/Desktop/flaskWeb-master/app/templates/login.html", line 1, in top-level template code
-    <!-- {% extends "base.html" %}
-jinja2.exceptions.TemplateRuntimeError: extended multiple times
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1967, in finalize_request
+    response = self.make_response(rv)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2097, in make_response
+    "The view function did not return a valid response. The"
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
+2020-01-27 12:48:22,459 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-27 12:48:40,553 ERROR: Exception on /explore [GET] [in /Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1967, in finalize_request
+    response = self.make_response(rv)
+  File "/Users/nikhilnanda/Desktop/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 2097, in make_response
+    "The view function did not return a valid response. The"
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
+2020-01-27 12:49:49,173 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
+2020-01-27 13:02:12,648 INFO: Microblog startup [in /Users/nikhilnanda/Desktop/flaskWeb-master/app/__init__.py:49]
