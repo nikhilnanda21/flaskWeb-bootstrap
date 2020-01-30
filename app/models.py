@@ -23,12 +23,8 @@ class User(UserMixin, db.Model):
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     dummy_token = jwt.encode({'some': 'payload'}, 'secret', algorithm='HS256')
-    #
-    # leagueId = db.Column(db.String(140))
-    # teamId = db.Column(db.String(140))
-    #
-    #
-    #jwt.decode(encoded, 'secret', algorithms=['HS256']) returns {'some': 'payload'}
+    leagueId = db.Column(db.String(140))
+    teamId = db.Column(db.String(140))
 
     followed = db.relationship(
         'User', secondary=followers,
@@ -38,7 +34,7 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         #return '<User {}>'.format(self.username)
-        return '<User {}, {}>'.format(self.username, self.password_hash)
+        return '<User {}, {}, {}, {}>'.format(self.username, self.password_hash, self.leagueId, self.teamId)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -69,7 +65,6 @@ class User(UserMixin, db.Model):
         own = Post.query.filter_by(user_id=self.id)
         return followed.union(own).order_by(Post.timestamp.desc())
 
-    #
     def get_reset_password_token(self, expires_in=600):
         return jwt.encode(
             {'reset_password': self.id, 'exp': time() + expires_in},
@@ -83,7 +78,6 @@ class User(UserMixin, db.Model):
         except:
             return
         return User.query.get(id)
-    #
 
 @login.user_loader
 def load_user(id):

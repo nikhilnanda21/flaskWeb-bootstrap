@@ -11,6 +11,7 @@
       <th>{{ i }}</th>
       {% endif %}
       {% endfor %}
+      <th>Subscribe</th>
     </tr>
   </thead>
   <tbody>
@@ -23,15 +24,23 @@
       {% if j=="logo" %}
       <td><img src="{{ content[i][j] }}" alt=""></td>
       {% endif %}
-      <!-- {% if j=="website" %}
-      <td><a href="{{ content[i][j] }}">{{ content[i]["name"] }}</a></td>
-      {% endif %} -->
       {% if j=="name" %}
       <td><a href="{{ content[i]["website"] }}">{{ content[i][j] }}</a></td>
       {% endif %}
       {% endfor %}
+      {% if tmId==content[i]["teamId"] %}
+        <td>
+          <button type="button" name="button" class="btn btn-success">Subscribed</button>
+        </td>
+      {% else %}
+        <td>
+          <a href="/idChange/{{ i }}"><button type="submit" id="button" class="btn btn-primary">Add</button></a>
+        </td>
+      {% endif %}
+
     </tr>
     {% endfor %}
   </tbody>
 </table>
+
 {% endblock %}

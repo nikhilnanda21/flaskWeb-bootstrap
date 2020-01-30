@@ -8,9 +8,6 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
-    #
-    # token = StringField('Token', validators=[Required(), Length(6, 6)])
-    #
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -33,9 +30,9 @@ class RegistrationForm(FlaskForm):
 class EditProfileForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     about_me = TextAreaField('About me', validators=[Length(min=0, max=140)])
-    # leagueId = StringField('LeagueId')
-    # teamId = StringField('TeamId')
-    submit = SubmitField('Submit')
+    leagueId = StringField('LeagueId', validators=[DataRequired()])
+    teamId = StringField('TeamId', validators=[DataRequired()])
+    submit = SubmitField('Subscribe')
 
     def __init__(self, original_username, *args, **kwargs):
         super(EditProfileForm, self).__init__(*args, **kwargs)
@@ -47,16 +44,16 @@ class EditProfileForm(FlaskForm):
             if user is not None:
                 raise ValidationError('Please use a different username.')
 
-#
 class ResetPasswordRequestForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Request Password Reset')
 
 class ResetPasswordForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
-    #email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField(
         'Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Request Password Reset')
-#
+
+class SubscribeForm(FlaskForm):
+    submit = SubmitField('Add')

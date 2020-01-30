@@ -11,11 +11,13 @@ from app import db
 from app.forms import RegistrationForm
 from datetime import datetime
 
-#
 from app.forms import ResetPasswordRequestForm
 from app.email import send_password_reset_email
 
 from datetime import timedelta
+
+globalVar = 1
+ind = 25
 
 @app.route('/reset_password_request', methods=['GET', 'POST'])
 def reset_password_request():
@@ -50,36 +52,12 @@ def reset_password(token):
         flash('Your password has been reset.')
         return redirect(url_for('login'))
     return render_template('reset_password.html', form=form)
-#
 
 @app.route('/')
 @app.route('/index')
 @login_required
 def index():
-    #return "Hello, World!"
-    user = {'username': 'Miguel'}
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
-#     return '''
-# <html>
-#     <head>
-#         <title>Home page - Microblog</title>
-#     </head>
-#     <body>
-#         <h1>Hello, ''' + user['username'] +  '''!</h1>
-#     </body>
-# </html>'''
-    #return render_template('index.html', title='Home', posts=posts)
     return render_template('index.html', title='Home')
-    #return render_template('index.html', user=user, posts=posts)
 
 
 @app.route('/login', methods = ['GET', 'POST'])
@@ -89,15 +67,10 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        #
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))
-        #login_user(user, remember=form.remember_me.data)
         login_user(user, remember=form.remember_me.data, duration=timedelta(seconds=30))
-        #
-        #session[username] = True
-        #
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
@@ -123,7 +96,6 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
-#Continue Here - for Day2
 @app.route('/user/<username>')
 @login_required
 def user(username):
@@ -132,7 +104,6 @@ def user(username):
         {'author': user, 'body': 'Test post #1'},
         {'author': user, 'body': 'Test post #2'}
     ]
-    #return render_template('user.html', user=user, posts=posts)
     return render_template('user.html', user=user)
 
 @app.before_request
@@ -148,12 +119,18 @@ def edit_profile():
     if form.validate_on_submit():
         current_user.username = form.username.data
         current_user.about_me = form.about_me.data
+        current_user.leagueId = form.leagueId.data
+        current_user.teamId = form.teamId.data
         db.session.commit()
         flash('Your changes have been saved.')
         return redirect(url_for('edit_profile'))
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me
+        if current_user.leagueId:
+            form.leagueId.data = current_user.leagueId
+        if current_user.teamId:
+            form.teamId.data = current_user.teamId
     return render_template('edit_profile.html', title='Edit Profile', form=form)
 
 @app.route('/follow/<username>')
@@ -195,35 +172,31 @@ import urllib.request
 from flask import jsonify
 import json
 
-# @app.route('/explore')
 @app.route('/live')
 @login_required
 def live():
-    # Set url parameter
-    # url = "http://api.isportsapi.com/sport/football/league/basic?api_key=hCfaYXgl0NG0WHBZ"
-    # url = "http://api.isportsapi.com/sport/football/schedule?api_key=hCfaYXgl0NG0WHBZ&date=2020-01-26"
-    # url = "http://api.isportsapi.com/sport/football/transfer?api_key=hCfaYXgl0NG0WHBZ&day=365"
-    url = "http://api.isportsapi.com/sport/football/topscorer?api_key=hCfaYXgl0NG0WHBZ&leagueId=1639"
-    # Call iSport Api to get data in json format
+    if not current_user.leagueId:
+        dummy = "1639"
+        return render_template('subscribe.html')
+    else:
+        dummy = current_user.leagueId
+    url = "http://api.isportsapi.com/sport/football/topscorer?api_key=hCfaYXgl0NG0WHBZ&leagueId=" + dummy
     f = urllib.request.urlopen(url)
     content = f.read()
     content = json.loads(content)
     numRow = len(content["data"])
-    #numCol = len(content["data"][0])
-    #print(type(content))
-    #return jsonify(content.decode('utf-8'))
 
     return render_template('data.html', content=content["data"], numRow=numRow)
-    #print(content.decode('utf-8'))
 
 @app.route('/player')
 @login_required
 def player():
-    # url = "http://api.isportsapi.com/sport/football/playerstats/league?api_key=hCfaYXgl0NG0WHBZ&leagueId=1639"
-    # url = "http://api.isportsapi.com/sport/football/playerstats/league/list?api_key=hCfaYXgl0NG0WHBZ&leagueId=1639"
-    # url = "http://api.isportsapi.com/sport/football/standing/league?api_key=hCfaYXgl0NG0WHBZ&leagueId=ID&subLeagueId=SUB_ID"
-    dummy = 26
-    url = "http://api.isportsapi.com/sport/football/player?api_key=hCfaYXgl0NG0WHBZ&teamId=" + str(dummy)
+    if not current_user.teamId:
+        dummy = "26"
+        return render_template('subscribe.html')
+    else:
+        dummy = current_user.teamId
+    url = "http://api.isportsapi.com/sport/football/player?api_key=hCfaYXgl0NG0WHBZ&teamId=" + dummy
     f = urllib.request.urlopen(url)
     content = f.read()
     content = json.loads(content)
@@ -233,7 +206,12 @@ def player():
 @app.route('/result')
 @login_required
 def result():
-    url = "http://api.isportsapi.com/sport/football/schedule?api_key=hCfaYXgl0NG0WHBZ&leagueId=1639"
+    if not current_user.leagueId:
+        dummy = "1639"
+        return render_template('subscribe.html')
+    else:
+        dummy = current_user.leagueId
+    url = "http://api.isportsapi.com/sport/football/schedule?api_key=hCfaYXgl0NG0WHBZ&leagueId=" + dummy
     f = urllib.request.urlopen(url)
     content = f.read()
     content = json.loads(content)
@@ -247,6 +225,29 @@ def team():
     f = urllib.request.urlopen(url)
     content = f.read()
     content = json.loads(content)
-    # numRow = len(content["data"])
-    numRow = 100
-    return render_template('team.html', content=content["data"], numRow=numRow)
+    numRow = 250
+    globalVar = content["data"]
+    return render_template('team.html', content=content["data"], numRow=numRow, tmId=current_user.teamId)
+
+@app.route('/idChange/<int:i>', methods=['GET', 'POST'])
+def idChange(i):
+    form = EditProfileForm(current_user.username)
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.about_me = form.about_me.data
+        current_user.leagueId = form.leagueId.data
+        current_user.teamId = form.teamId.data
+        db.session.commit()
+        flash('Your changes have been saved.')
+        return redirect(url_for('edit_profile'))
+    else:
+        url = "http://api.isportsapi.com/sport/football/team?api_key=hCfaYXgl0NG0WHBZ"
+        f = urllib.request.urlopen(url)
+        content = f.read()
+        content = json.loads(content)
+        globalVar = content["data"]
+        form.username.data = current_user.username
+        form.about_me.data = current_user.about_me
+        form.leagueId.data = globalVar[i]["leagueId"]
+        form.teamId.data = globalVar[i]["teamId"]
+    return render_template('edit_profile.html', title='Edit Profile', form=form)
