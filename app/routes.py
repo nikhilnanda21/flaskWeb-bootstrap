@@ -17,6 +17,9 @@ from app.email import send_password_reset_email
 
 from datetime import timedelta
 
+globalVar = 1
+ind = 25
+
 @app.route('/reset_password_request', methods=['GET', 'POST'])
 def reset_password_request():
     if current_user.is_authenticated:
@@ -211,6 +214,7 @@ def live():
     # url = "http://api.isportsapi.com/sport/football/transfer?api_key=hCfaYXgl0NG0WHBZ&day=365"
     if not current_user.leagueId:
         dummy = "1639"
+        return render_template('subscribe.html')
     else:
         dummy = current_user.leagueId
     url = "http://api.isportsapi.com/sport/football/topscorer?api_key=hCfaYXgl0NG0WHBZ&leagueId=" + dummy
@@ -234,6 +238,7 @@ def player():
     # url = "http://api.isportsapi.com/sport/football/standing/league?api_key=hCfaYXgl0NG0WHBZ&leagueId=ID&subLeagueId=SUB_ID"
     if not current_user.teamId:
         dummy = "26"
+        return render_template('subscribe.html')
     else:
         dummy = current_user.teamId
     url = "http://api.isportsapi.com/sport/football/player?api_key=hCfaYXgl0NG0WHBZ&teamId=" + dummy
@@ -248,6 +253,7 @@ def player():
 def result():
     if not current_user.leagueId:
         dummy = "1639"
+        return render_template('subscribe.html')
     else:
         dummy = current_user.leagueId
     url = "http://api.isportsapi.com/sport/football/schedule?api_key=hCfaYXgl0NG0WHBZ&leagueId=" + dummy
@@ -255,6 +261,7 @@ def result():
     content = f.read()
     content = json.loads(content)
     numRow = len(content["data"])
+    #globalVar = content["data"]
     return render_template('result.html', content=content["data"], numRow=numRow)
 
 @app.route('/team')
@@ -266,4 +273,35 @@ def team():
     content = json.loads(content)
     # numRow = len(content["data"])
     numRow = 250
-    return render_template('team.html', content=content["data"], numRow=numRow)
+    # numRow = 1
+    globalVar = content["data"]
+    return render_template('team.html', content=content["data"], numRow=numRow, tmId=current_user.teamId)
+
+#@app.route('/idChange/<int:i>', methods=['GET', 'POST'])
+@app.route('/idChange/<int:i>', methods=['GET', 'POST'])
+def idChange(i):
+    #flash(button.data)
+    # current_user.teamId = 26
+    # current_user.leagueId = 1639
+    # return render_template('edit_profile.html', user=current_user)
+    # return render_template('idChange.html')
+    form = EditProfileForm(current_user.username)
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.about_me = form.about_me.data
+        current_user.leagueId = form.leagueId.data
+        current_user.teamId = form.teamId.data
+        db.session.commit()
+        flash('Your changes have been saved.')
+        return redirect(url_for('edit_profile'))
+    else:
+        url = "http://api.isportsapi.com/sport/football/team?api_key=hCfaYXgl0NG0WHBZ"
+        f = urllib.request.urlopen(url)
+        content = f.read()
+        content = json.loads(content)
+        globalVar = content["data"]
+        form.username.data = current_user.username
+        form.about_me.data = current_user.about_me
+        form.leagueId.data = globalVar[i]["leagueId"]
+        form.teamId.data = globalVar[i]["teamId"]
+    return render_template('edit_profile.html', title='Edit Profile', form=form)

@@ -2,8 +2,12 @@
 
 {% block app_content %}
   <h1>Hi, <em>{{ current_user.username }}</em>!</h1>
+  <div class="">
+    <p>In order to subscribe to a team, go to <a href="{{ url_for('team') }}">Team Profiles</a>
+    </p>
+  </div>
   {% for post in posts %}
   <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
   {% endfor %}
-  
+
 {% endblock %}

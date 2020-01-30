@@ -35,7 +35,7 @@ class EditProfileForm(FlaskForm):
     about_me = TextAreaField('About me', validators=[Length(min=0, max=140)])
     leagueId = StringField('LeagueId', validators=[DataRequired()])
     teamId = StringField('TeamId', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Subscribe')
 
     def __init__(self, original_username, *args, **kwargs):
         super(EditProfileForm, self).__init__(*args, **kwargs)
@@ -60,3 +60,6 @@ class ResetPasswordForm(FlaskForm):
         'Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Request Password Reset')
 #
+
+class SubscribeForm(FlaskForm):
+    submit = SubmitField('Add')
