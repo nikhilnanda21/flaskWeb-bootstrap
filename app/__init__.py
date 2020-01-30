@@ -18,8 +18,6 @@ migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
 mail = Mail(app)
-#globalVar = 1
-#ind = 25
 
 bootstrap = Bootstrap(app)
 

@@ -11,7 +11,6 @@ from app import db
 from app.forms import RegistrationForm
 from datetime import datetime
 
-#
 from app.forms import ResetPasswordRequestForm
 from app.email import send_password_reset_email
 
@@ -53,36 +52,12 @@ def reset_password(token):
         flash('Your password has been reset.')
         return redirect(url_for('login'))
     return render_template('reset_password.html', form=form)
-#
 
 @app.route('/')
 @app.route('/index')
 @login_required
 def index():
-    #return "Hello, World!"
-    user = {'username': 'Miguel'}
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
-#     return '''
-# <html>
-#     <head>
-#         <title>Home page - Microblog</title>
-#     </head>
-#     <body>
-#         <h1>Hello, ''' + user['username'] +  '''!</h1>
-#     </body>
-# </html>'''
-    #return render_template('index.html', title='Home', posts=posts)
     return render_template('index.html', title='Home')
-    #return render_template('index.html', user=user, posts=posts)
 
 
 @app.route('/login', methods = ['GET', 'POST'])
@@ -92,15 +67,10 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        #
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))
-        #login_user(user, remember=form.remember_me.data)
         login_user(user, remember=form.remember_me.data, duration=timedelta(seconds=30))
-        #
-        #session[username] = True
-        #
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
@@ -126,7 +96,6 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
-#Continue Here - for Day2
 @app.route('/user/<username>')
 @login_required
 def user(username):
@@ -135,7 +104,6 @@ def user(username):
         {'author': user, 'body': 'Test post #1'},
         {'author': user, 'body': 'Test post #2'}
     ]
-    #return render_template('user.html', user=user, posts=posts)
     return render_template('user.html', user=user)
 
 @app.before_request
@@ -204,38 +172,25 @@ import urllib.request
 from flask import jsonify
 import json
 
-# @app.route('/explore')
 @app.route('/live')
 @login_required
 def live():
-    # Set url parameter
-    # url = "http://api.isportsapi.com/sport/football/league/basic?api_key=hCfaYXgl0NG0WHBZ"
-    # url = "http://api.isportsapi.com/sport/football/schedule?api_key=hCfaYXgl0NG0WHBZ&date=2020-01-26"
-    # url = "http://api.isportsapi.com/sport/football/transfer?api_key=hCfaYXgl0NG0WHBZ&day=365"
     if not current_user.leagueId:
         dummy = "1639"
         return render_template('subscribe.html')
     else:
         dummy = current_user.leagueId
     url = "http://api.isportsapi.com/sport/football/topscorer?api_key=hCfaYXgl0NG0WHBZ&leagueId=" + dummy
-    # Call iSport Api to get data in json format
     f = urllib.request.urlopen(url)
     content = f.read()
     content = json.loads(content)
     numRow = len(content["data"])
-    #numCol = len(content["data"][0])
-    #print(type(content))
-    #return jsonify(content.decode('utf-8'))
 
     return render_template('data.html', content=content["data"], numRow=numRow)
-    #print(content.decode('utf-8'))
 
 @app.route('/player')
 @login_required
 def player():
-    # url = "http://api.isportsapi.com/sport/football/playerstats/league?api_key=hCfaYXgl0NG0WHBZ&leagueId=1639"
-    # url = "http://api.isportsapi.com/sport/football/playerstats/league/list?api_key=hCfaYXgl0NG0WHBZ&leagueId=1639"
-    # url = "http://api.isportsapi.com/sport/football/standing/league?api_key=hCfaYXgl0NG0WHBZ&leagueId=ID&subLeagueId=SUB_ID"
     if not current_user.teamId:
         dummy = "26"
         return render_template('subscribe.html')
@@ -261,7 +216,6 @@ def result():
     content = f.read()
     content = json.loads(content)
     numRow = len(content["data"])
-    #globalVar = content["data"]
     return render_template('result.html', content=content["data"], numRow=numRow)
 
 @app.route('/team')
@@ -271,20 +225,12 @@ def team():
     f = urllib.request.urlopen(url)
     content = f.read()
     content = json.loads(content)
-    # numRow = len(content["data"])
     numRow = 250
-    # numRow = 1
     globalVar = content["data"]
     return render_template('team.html', content=content["data"], numRow=numRow, tmId=current_user.teamId)
 
-#@app.route('/idChange/<int:i>', methods=['GET', 'POST'])
 @app.route('/idChange/<int:i>', methods=['GET', 'POST'])
 def idChange(i):
-    #flash(button.data)
-    # current_user.teamId = 26
-    # current_user.leagueId = 1639
-    # return render_template('edit_profile.html', user=current_user)
-    # return render_template('idChange.html')
     form = EditProfileForm(current_user.username)
     if form.validate_on_submit():
         current_user.username = form.username.data

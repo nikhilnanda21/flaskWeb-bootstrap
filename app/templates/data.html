@@ -17,9 +17,9 @@
     {% for i in range(numRow) %}
     <tr>
       {% for j in content[i] %}
-      <!-- {% if j!="playerId" and j!="teamId" %} -->
+      {% if j!="playerId" and j!="teamId" %}
       <td>{{ content[i][j] }}</td>
-      <!-- {% endif %} -->
+      {% endif %}
       {% endfor %}
     </tr>
     {% endfor %}
